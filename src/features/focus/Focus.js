@@ -9,7 +9,10 @@ const Focus = ({ addSubject }) => {
       <View style={styles.titleContainer}>
         <Text style={styles.title}>What you like to focus on</Text>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} />
+          <TextInput
+            style={styles.textInput}
+            onSubmitEditing={({ nativeEvent: { text } }) => addSubject(text)}
+          />
           <RoundedButton title="+" size={50} />
         </View>
       </View>
