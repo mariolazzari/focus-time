@@ -8,7 +8,7 @@ const RoundedButton = ({
   ...props
 }) => {
   return (
-    <TouchableOpacity style={[styles(size).radius]}>
+    <TouchableOpacity style={[styles(size).radius]} onPress={props.onPress}>
       <Text style={[styles(size).text, textStyle]}>{props.title}</Text>
     </TouchableOpacity>
   );
@@ -22,6 +22,7 @@ const styles = size =>
       borderRadius: size / 2,
       width: size,
       height: size,
+      justifyContent: "center",
       alignItems: "center",
       borderColor: "#fff",
       borderWidth: 2,
