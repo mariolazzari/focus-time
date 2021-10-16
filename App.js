@@ -7,7 +7,13 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {focusSubject ? <Text>Hello World</Text> : <Focus />}
+      {focusSubject ? (
+        <Text>Hello World</Text>
+      ) : (
+        <Focus addSubject={setFocusSubject} />
+      )}
+
+      <Text>{focusSubject}</Text>
     </View>
   );
 }
