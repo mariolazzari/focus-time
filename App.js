@@ -16,7 +16,7 @@ const STATUSES = {
 // component
 const App = () => {
   // state
-  const [focusSubject, setFocusSubject] = useState("Mario");
+  const [focusSubject, setFocusSubject] = useState("");
   const [focusHistory, setFocusHistory] = useState([]);
 
   const addFocusHistorySubjectWithStatus = (subject, status) => {
@@ -26,9 +26,7 @@ const App = () => {
     ]);
   };
 
-  const onClear = () => {
-    setFocusHistory([]);
-  };
+  const onClear = () => setFocusHistory([]);
 
   const saveFocusHistory = async () => {
     try {
@@ -65,18 +63,18 @@ const App = () => {
         <Timer
           focusSubject={focusSubject}
           onTimerEnd={() => {
-            // addFocusHistorySubjectWithStatus(focusSubject, STATUSES.COMPLETE);
+            addFocusHistorySubjectWithStatus(focusSubject, STATUSES.COMPLETE);
             setFocusSubject(null);
           }}
           clearSubject={() => {
-            // addFocusHistorySubjectWithStatus(focusSubject, STATUSES.CANCELLED);
+            addFocusHistorySubjectWithStatus(focusSubject, STATUSES.CANCELLED);
             setFocusSubject(null);
           }}
         />
       ) : (
         <View style={{ flex: 1 }}>
           <Focus addSubject={setFocusSubject} />
-          {/*  <FocusHistory focusHistory={focusHistory} onClear={onClear} />*/}
+          <FocusHistory focusHistory={focusHistory} onClear={onClear} />
         </View>
       )}
     </View>

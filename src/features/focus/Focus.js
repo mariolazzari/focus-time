@@ -16,7 +16,7 @@ const Focus = ({ addSubject }) => {
         <Text style={styles.title}>What would you like to focus on?</Text>
         <View style={styles.inputContainer}>
           <TextInput
-            style={{ flex: 1, marginRight: spacing.md }}
+            style={styles.input}
             onChangeText={text => setSubject(text)}
             value={subject}
           />
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  input: { flex: 1, marginRight: spacing.md },
 });
 
 export default Focus;
