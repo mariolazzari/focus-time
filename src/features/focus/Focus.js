@@ -1,43 +1,56 @@
 import React, { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
-import { View, StyleSheet, Text, FlatList, SafeAreaView } from "react-native";
 import { RoundedButton } from "../../components/RoundedButton";
-import { fontSizes } from "../../utils/sizes";
+import { fontSizes, spacing } from "../../utils/sizes";
 import { colors } from "../../utils/colors";
 
-export const Focus = ({ addSubject, focusHistory }) => {
-  const [focusItem, setFocusItem] = useState(null);
+// component
+const Focus = ({ addSubject }) => {
+  // state
+  const [subject, setSubject] = useState("");
+
   return (
-    <View style={styles.titleContainer}>
-      <Text style={styles.title}>What would you like to focus on?</Text>
-      <View style={styles.container}>
-        <TextInput
-          style={{ flex: 1 }}
-          maxLength={50}
-          value={focusItem}
-          onSubmitEditing={({ nativeEvent: { text } }) => setFocusItem(text)}
-        />
-        <RoundedButton
-          style={styles.addSubject}
-          size={50}
-          title="+"
-          onPress={() => addSubject(focusItem)}
-        />
+    <View style={styles.container}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.title}>What would you like to focus on?</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={{ flex: 1, marginRight: spacing.md }}
+            onChangeText={text => setSubject(text)}
+            value={subject}
+          />
+          <RoundedButton
+            size={50}
+            title="+"
+            onPress={() => addSubject(subject)}
+          />
+        </View>
       </View>
     </View>
   );
 };
 
+// styles
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flex: 0.5,
   },
-  titleContainer: { flex: 0.5, padding: 16, justifyContent: "center" },
+  innerContainer: {
+    flex: 1,
+    padding: spacing.md,
+    justifyContent: "center",
+  },
   title: {
     color: colors.white,
     fontWeight: "bold",
-    padding: fontSizes.md,
     fontSize: fontSizes.lg,
   },
-  addSubject: { marginLeft: 10, alignSelf: "center" },
+  inputContainer: {
+    paddingTop: spacing.md,
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });
+
+export default Focus;
